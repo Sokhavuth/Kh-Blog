@@ -1,0 +1,31 @@
+<!--login.ejs-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ទំព័រពាក្យ​សំងាត់</title>
+    <link rel='stylesheet' href='/stylesheets/login-style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Odor+Mean+Chey|Moul|Koulen|Bayon|Bokor|Nokora" rel="stylesheet">
+    <link rel="icon" href="https://3.bp.blogspot.com/-P2DOhVx8mTw/Xko-i2asuHI/AAAAAAABlWc/O0vC3539nj8wOrgfjxCPoF9TEWb47rMxgCLcBGAsYHQ/s1600/download.png">
+  </head>
+  <body>
+    <div class="form-outer">
+    <div class="title">ទំព័រ​ពាក្យ​សំងាត់</div>
+    <div class="info">
+        បញ្ចូល​ឈ្មោះអ្នកប្រើប្រាស់​និង​​ពាក្យ​សំងាត់​​របស់​អ្នក​ ដើម្បី​៊ចូល​ទៅ​​កាន់​ទំព័រ​គ្រប់គ្រង។
+    </div>
+    <form action="/users/login" method="post">    
+        <div class="input-wrapper">
+            <label>ឈ្មោះអ្នកប្រើប្រាស់:</label>
+            <input type="text" name="username"/>
+        </div>
+        <div class="input-wrapper">
+            <label>ពាក្យ​សំងាត់:</label>
+            <input type="password" name="password"/>
+        </div>
+        <div>
+            <input class="submit" type="submit" value="បញ្ចូល"/>
+        </div> 
+    </form>
+    </div>
+  </body>
+</html>

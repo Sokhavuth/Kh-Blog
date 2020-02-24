@@ -1,0 +1,84 @@
+<!--users-main-content.ejs-->
+<div class="content">
+  <style>
+  .content .category{
+    display:grid;
+    grid-template-columns: 28% auto;
+  }
+  .content .post-content{
+    margin:0 20px 20px 0;
+    overflow:hidden;
+  }
+  
+  .content .post-content img{
+    width:100%;
+    min-height:100%;
+  }
+  .content .title{
+    font:16px/1.5 Bayon;
+    margin-bottom:20px;
+  }
+  @media only screen and (max-width: 768px){
+    .content .category{
+      grid-template-columns:100%;
+    }
+    .content .post-content{
+      margin:0 0 10px;;
+    }
+    .content .content-wrapper{
+      margin-bottom:30px;
+    }
+    .content .title{
+      margin:0;
+    }
+  }
+  </style>
+
+  <div class="category">
+    <% for(var i=0; i < postlist.length; i++) { %>
+    
+      <a href="/post/<%= postlist[i]._id %>">
+      <div class="post-content<%= i %> post-content">
+        <%- postlist[i].content %>
+      </div>
+      </a>
+
+    <div class="content-wrapper">
+      <a href="/post/<%= postlist[i]._id %>">
+      <div class="title">
+        <%- postlist[i].title %>
+      </div>
+      </a>
+  
+      <div class="post-date">
+        <script>
+          document.write(__KBobject__.getKhDate(new Date('<%- postlist[i].date %>')));
+        </script>
+      </div>
+
+      <div class="post-category">
+        ជំពូកៈ <%- postlist[i].category %>
+      </div>
+    </div><!--content-wrapper-->
+
+    <script>
+      var thumb = __KBobject__.createThumb($('.post-content<%= i %>').html());
+      $('.post-content<%= i %>').html('<img src="'+thumb+'" />');
+      var width = $('.post-content').css('width');
+      var height = parseInt(width)/16*9;
+      $('.post-content').css('height',height);
+    </script>
+
+    <% } %>  
+
+  </div><!--category-->
+</div><!--content-->
+
+<script>
+  $(window).resize(function(){
+    var width = $('.post-content').css('width');
+    var height = parseInt(width)/16*9;
+    $('.post-content').css('height',height);
+    
+  });
+</script>

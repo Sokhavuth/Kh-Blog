@@ -1,0 +1,47 @@
+<!--users-main-content.ejs-->
+<div class="content">
+  <style>
+    .posting{
+      column-count: 3;
+    }
+    .posting .title{
+      font:22px/1.5 Bayon;
+      margin-bottom:20px;
+    }
+    .posting .post-date{
+      font:italic 16px/1.5 Nokora;
+    }
+    @media only screen and (max-width:768px){
+      .posting{
+        column-count:1;
+        margin-bottom:30px;
+      }
+    }
+  </style>
+  <div class="posting">
+
+    <% for(var i=0; i < postlist.length; i++) { %>
+
+      <div class="title">
+        <%- postlist[i].title %>
+      </div>
+  
+      <div class="post-date">
+        <script>
+          document.write(__KBobject__.getKhDate(new Date('<%- postlist[i].date %>')));
+        </script>
+      </div>
+      
+      <div class="post-content">
+        <%- postlist[i].content %>
+      </div>
+
+      <div class="post-meta">
+        ជំពូកៈ <%- postlist[i].category %>
+      </div>
+    
+    
+    <% } %>  
+  
+  </div><!--posting-->
+</div><!--content-->

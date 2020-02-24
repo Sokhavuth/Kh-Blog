@@ -1,0 +1,65 @@
+/* login-style.css */
+body{
+  padding:0;
+  margin:0;
+  font:14px "Lucida Grande", Helvetica, Arial, sans-serif,"Odor Mean Chey";
+  background:url('https://4.bp.blogspot.com/-wFpm2RU0COI/Xkv8zCC0XuI/AAAAAAABlYA/WTIb8Kia2mMhdXoWEZfSLiCkUp-w4IKbgCLcBGAsYHQ/s1600/ADB3.jpg');
+  background-repeat:no-repeat;
+  background-size:100% auto;
+}
+.form-outer{
+  background:#e6e6e6;
+  width:500px;
+  height:520px;
+  margin:50px auto;
+  opacity:.7;
+  border-radius:4px;
+  position:relative;
+}
+.form-outer .title{
+  background:rgb(9, 161, 231);
+  text-align:center;
+  font:18px Bayon;
+  color:rgb(70, 67, 67);
+  padding:3px;
+}
+.form-outer .info{
+  font:italic 24px/1.5 Nokora;
+  position:absolute;
+  top:130px;
+  padding:0 30px;
+}
+form{
+  position:absolute;
+  bottom:100px;
+  text-align:center;
+  width:100%
+}
+.input-wrapper{
+  display:grid;
+  grid-template-columns:25% 75%;
+  align-items:center;
+  width:calc(100% - 60px);
+  margin:0 auto;
+  text-align:left;
+  margin-bottom:5px;
+}
+.input-wrapper label{
+  text-align:right;
+}
+.input-wrapper input{
+  height:30px;
+  padding:0 10px;
+}
+.submit{
+  font:14px "Odor Mean Chey";
+  padding:2px 20px;
+}
+@media only screen and (max-width: 768px){
+  .form-outer{
+    width:100%;
+  }
+  .input-wrapper{
+    width:calc(100% - 10px);
+  }
+}

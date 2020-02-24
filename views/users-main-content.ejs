@@ -1,0 +1,26 @@
+<!--users-main-content.ejs-->
+<div class="content">
+  <div class="posting">
+
+    <form class="post-submit" action="/users/dashboard/posts" method="post">
+      <input name="title" class="title" placeholder="ចំណងជើងការផ្សាយ" required="required" type="text" />
+
+      <textarea required="required" name="content" id="editor" ></textarea>
+      <script>
+        CKEDITOR.replace( 'editor', {
+          height:270,
+        });
+
+        
+      </script> 
+
+      <select name="category" class="category">
+        <option value="">ចុះ​ផ្សាយ​ក្នុង​ជំពូកៈ</option>
+        <option value="ជាតិ">ជាតិ</option>
+        <option value="អន្តរជាតិ">អន្តរជាតិ</option>
+      </select>
+      <input id="submit" style="display:none;" class="submit" type="submit" value="submit">
+    </form>
+
+  </div><!--posting-->
+</div><!--content-->
