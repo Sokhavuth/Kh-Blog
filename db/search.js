@@ -1,8 +1,10 @@
 /* postlist-index.js */
 var theme = require('../views/register');
 var setup = require('../views/'+theme+'/setup');
+var express = require('express');
+var router = express.Router();
 
-module.exports = function(req,res){
+router.post('/', function(req, res, next) {
 
   var MongoClient = require('mongodb').MongoClient;
   var url = setup.dbUrl
@@ -10,8 +12,10 @@ module.exports = function(req,res){
   MongoClient.connect(url, {useUnifiedTopology:true}, function(err, db){
     if (err) throw err;
     var dbo = db.db("mydb");
+   
+    var query = { content: { $regex: req.body.query } };
     
-    dbo.collection("posts").find({}).sort({date: -1}).limit(setup.postLimit).toArray(function(err, result) {
+    dbo.collection("posts").find(query).sort({date: -1}).limit(setup.postLimit).toArray(function(err, result) {
       if (err) throw err;
       req.postlist = result;
       db.close().then(getData());
@@ -19,9 +23,10 @@ module.exports = function(req,res){
   });
 
   function getData(){
-    for(var i=0; i<req.postlist.length; i++){
-
-    }
-    res.render( theme+'/index', { postlist: req.postlist, title:setup.blogTitle });
+    res.render( theme+'/search', { postlist: req.postlist, title:setup.searchPageTitle });
   }
-}
+
+
+});
+
+module.exports = router;

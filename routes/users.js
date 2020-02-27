@@ -35,7 +35,7 @@ passport.deserializeUser(function(id, cb) {
 /* កំណត់ផ្លូវ​ទៅ​កាន់​ទំព័រ​គ្រប់គ្រង */
 router.get('/',
   function(req, res) {
-    res.render('login');
+    res.render('default/login');
 });
   
 router.post('/login', 
@@ -53,13 +53,13 @@ router.get('/logout',
 router.get('/dashboard',
   ifLogedin.ensureLoggedIn('/users'),
   function(req, res){
-    res.render('users', { user: req.user, title:"​ចុះ​ផ្សាយ" });
+    res.render('default/users', { user: req.user, title:"​ចុះ​ផ្សាយ" });
 });
 
 router.get('/dashboard/model',
   ifLogedin.ensureLoggedIn('/users'),
   function(req, res){
-    res.render('model', { user: req.user, title:"​​គំរូ​ទិន្នន័យ" });
+    res.render('default/model', { user: req.user, title:"​​គំរូ​ទិន្នន័យ" });
 });
 
 router.post('/dashboard/posts',
@@ -72,6 +72,12 @@ router.get('/dashboard/posts',
   ifLogedin.ensureLoggedIn('/users'),
   function(req, res){
     db.postlist(req,res);
+});
+
+router.get('/dashboard/pages',
+  ifLogedin.ensureLoggedIn('/users'),
+  function(req, res){
+    db.pagelist(req,res);
 });
 
 module.exports = router;

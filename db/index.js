@@ -2,3 +2,4 @@
 exports.authors = require('./authors');
 exports.posting = require('./posting');
 exports.postlist = require('./postlist');
+exports.pagelist = require('./pagelist');

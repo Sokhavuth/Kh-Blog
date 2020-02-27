@@ -16,6 +16,6 @@ module.exports = function(req,res){
   });
 
   function getData(){
-    res.render('posts', { postlist: req.postlist, title:"​បណ្តុំការផ្សាយ" });
+    res.render('default/posts', { postlist: req.postlist, title:"​បណ្តុំការផ្សាយ" });
   }
 }

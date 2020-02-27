@@ -1,8 +1,8 @@
-/* category.js */
+/* postlist.js */
 var theme = require('../views/register');
 var setup = require('../views/'+theme+'/setup');
 
-module.exports = function(req,res,next){
+module.exports = function(req,res){
 
   var MongoClient = require('mongodb').MongoClient;
   var url = setup.dbUrl
@@ -10,8 +10,8 @@ module.exports = function(req,res,next){
   MongoClient.connect(url, {useUnifiedTopology:true}, function(err, db){
     if (err) throw err;
     var dbo = db.db("mydb");
-  console.log(req.body);
-    dbo.collection("posts").find({category:req.params.cat}).sort({date:-1}).limit(setup.postLimit).toArray(function(err, result) {
+  
+    dbo.collection("pages").find({}).sort({date:-1}).limit(12).toArray(function(err, result) {
       if (err) throw err;
       req.postlist = result;
       db.close().then(getData());
@@ -19,6 +19,6 @@ module.exports = function(req,res,next){
   });
 
   function getData(){
-    res.render( theme+'/category', { postlist: req.postlist, title:setup.categoryTitle + req.params.cat });
+    res.render('default/pages', { postlist: req.postlist, title:"​បណ្តុំទំព័រ​ព័ត៌មាន" });
   }
-};
+}

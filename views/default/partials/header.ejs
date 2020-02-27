@@ -1,0 +1,106 @@
+<!--users-header.ejs-->
+<header id="site-header" class="site-header">
+  <div class="inner region">
+    <div class="logo">
+      <a href="/"><img src='/images/site_logo.png' /></a>
+    </div>
+    
+      <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      
+    .site-header .title{
+      display:grid;
+      grid-template-columns: 50% 50%;
+    }
+    *{
+      box-sizing: border-box;
+    }
+
+/* Style the search field */
+form.search input[type=text] {
+  padding: 7px 10px;
+  font: 14px/1.5 "Odor Mean Chey";
+  border: 1px solid white;
+  float: left;
+  width: 70%;
+  background: #f1f1f1;
+  border-radius:2px 0 0 2px;
+}
+
+/* Style the submit button */
+form.search button {
+  float: left;
+  width: 20%;
+  padding: 7px;
+  background: rgb(2, 173, 79);
+  color: white;
+  font: 14px/1.5 "Odor Mean Chey";
+  border: 1px solid white;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  border-radius:2px 0 0 2px;
+}
+
+form.search button:hover {
+  opacity:.6;
+}
+
+/* Clear floats */
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media only screen and (max-width: 768px){
+  .site-header .title{
+    grid-template-columns:100%;
+  }
+  form.search button{
+    width:30%;
+  }
+}
+
+</style>
+<div class="title">
+  
+
+<div class="topnav" id="myTopnav">
+  <a href="#" class="active menu-title"><%= title %></a>
+  <a href="/category/ជាតិ">ព័ត៌មាន</a>
+  <a href="/page/5e56135b3dca745c08423710">ទំនាក់ទំង</a>
+  <a href="/page/5e5610781d01974428300c7b">អំពី​យើង​ខ្ញុំ</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+
+</div>
+
+<script>
+  /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+<!-- The form -->
+<form class="search" action="/search" method="post">
+  <input type="text" placeholder="ស្វែង​រក.." name="query" required>
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+    
+    </div><!--title-->
+    
+    <div class="log-out tooltip">
+      <a href="/users/dashboard"><img src="/images/login.png" /></a>
+      <span class="tooltiptext">ចូល​ទៅកាន់​​ទំព័រ​គ្រប់​គ្រង</span>
+    </div>
+  </div>
+</header>

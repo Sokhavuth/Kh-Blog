@@ -1,22 +1,32 @@
 /* posts.js */
+var theme = require('../views/register');
+var setup = require('../views/'+theme+'/setup');
 
 module.exports = function(req,res){
   var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb+srv://sokhavuth:sokhavuthmongodb@cluster0-ql8v2.gcp.mongodb.net/mydb?retryWrites=true&w=majority";
+  var url = setup.dbUrl;
  
   MongoClient.connect(url, {useUnifiedTopology:true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
     
+    if(req.body.postpage == "post"){
+      var collection = "posts";
+    }
+    else{
+      var collection = "pages";
+    }
+
     var records = [
-      {date:new Date(), author:req.user.displayName, title:req.body.title, content:req.body.content, category:req.body.category}
+      {date:new Date(), type:req.body.postpage, author:req.user.displayName, title:req.body.title, content:req.body.content, category:req.body.category}
     ];
   
-    dbo.collection("posts").insertMany(records, function(err, res){
+
+    dbo.collection(collection).insertMany(records, function(err, res){
       if (err) throw err;
       //db.close();
 
-      dbo.collection("posts").find().sort({date: -1}).limit(12).toArray(function(err, result) {
+      dbo.collection(collection).find().sort({date: -1}).limit(12).toArray(function(err, result) {
         if (err) throw err;
         req.postlist = result;
         db.close().then(getData());
@@ -26,12 +36,14 @@ module.exports = function(req,res){
   });
   
   function getData(){
-    res.render('posts', { postlist: req.postlist, title:"​បណ្តុំការផ្សាយ" });
+    if(req.body.postpage == "post"){
+      var pageTitle = "​បណ្តុំការផ្សាយ";
+      res.render(theme+"/posts", { postlist: req.postlist, title:pageTitle });
+    }
+    else{
+      var pageTitle = "​បណ្តុំទំព័រ​ព័ត៌មាន";
+      res.render("default/pages", { postlist: req.postlist, title:pageTitle });
+    }
   }
 
-}
-
-
-
-
-
+};

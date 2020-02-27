@@ -1,0 +1,11 @@
+<!--users-main-content.ejs-->
+<div class="content">
+  <div class="posts">
+    <div id="editor"></div>
+    
+    <% for(var i=0; i < postlist.length; i++) { %>
+      <div><a target="_blank" href="/page/<%= postlist[i]._id %>"><%= postlist[i].title %></a></div>   
+    <% } %>
+
+  </div><!--posting-->
+</div><!--content-->
